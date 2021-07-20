@@ -1,0 +1,21 @@
+.table th,
+.table td {
+  padding: 0.5rem !important;
+}
+.modal-body .row {
+  text-align: center;
+  display: block;
+}
+
+input.form-control {
+  height: 45px;
+  padding: 15px 10px;
+}
+
+.row.head {
+  padding: 15px 0px 20px;
+}
+
+.modal-footer {
+  justify-content: space-between;
+}

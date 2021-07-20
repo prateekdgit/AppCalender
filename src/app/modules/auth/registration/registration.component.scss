@@ -1,0 +1,52 @@
+:host {
+  width: 100%;
+  @media (min-width: 992px) {
+    .login-form {
+      width: 100%;
+      max-width: 450px;
+
+      .mat-form-field {
+        width: 100%;
+      }
+    }
+  }
+  mat-form-field.mat-form-field.mat-form-field-type-mat-select {
+    background: #f3f6f9;
+    border-radius: 8px;
+    padding: 5px 10px;
+    border: none;
+  }
+
+  mat-form-field.mat-form-field.mat-form-field-type-mat-select.mat-focused
+    .mat-form-field {
+    border: none !important;
+  }
+  .btn-toolbar.ng-wizard-toolbar,
+  ul.nav.nav-tabs.step-anchor {
+    display: none!important;
+  }
+}
+ng-wizard{
+  .btn-toolbar.ng-wizard-toolbar,
+  ul.nav.nav-tabs.step-anchor {
+    display: none!important;
+  }
+}
+.workspace_invite{
+  .row.custom-card {
+    padding: 15px 20px;
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
+    box-shadow: 3px 3px 10px #e2e2e2;
+    margin: 10px;
+    // display: flex;
+    // flex-direction: row;
+    // flex-wrap: nowrap;
+    // justify-content: center;
+    // align-items: center;
+    // align-content: center;
+    display: grid;
+    grid-template-columns: 3fr 3fr 1fr;
+  }
+
+}

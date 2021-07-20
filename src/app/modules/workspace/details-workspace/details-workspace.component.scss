@@ -1,0 +1,75 @@
+.table th,
+.table td {
+  padding: 0.5rem !important;
+}
+.modal-body .row {
+  text-align: center;
+  display: block;
+}
+
+input.form-control {
+  /*  height: 45px;*/
+  padding: 15px 10px;
+  margin: 5px;
+}
+
+.row.head {
+  padding: 15px 0px 20px;
+}
+
+.modal-footer {
+  justify-content: space-between;
+}
+
+.inviteTeam {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+// .inviteTeam div:nth-child(1) {
+//   width: 45%;
+// }
+// .inviteTeam div:nth-child(2) {
+//   width: 50%;
+// }
+// .inviteTeam div:nth-child(2) {
+//   width: 20%;
+// }
+.inviteTeam.ng-star-inserted {
+  max-width: 450px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 4fr 2fr 2fr;
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  .btn {
+    // border-radius: 100%;
+    border-radius: 8px;
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  div {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    width: 100%;
+  }
+  div .btn.remove:hover {
+    background: red !important;
+    border: red;
+  }
+  .btn_block {
+    margin: 0 auto;
+    width: auto;
+  }
+}
+
+.inviteTeam div span { 
+  padding: 5px 5px 5px 5px;
+  }
+

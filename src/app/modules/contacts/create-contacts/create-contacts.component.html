@@ -1,0 +1,1037 @@
+<!--begin::Card-->
+<div class="card card-custom gutter-b">
+  <!--begin::Header-->
+  <div class="card-header card-header-tabs-line" id="kt_aside">
+    <ul class="nav nav-dark nav-bold nav-tabs nav-tabs-line" role="tablist">
+      <li class="nav-item">
+        <a
+          (click)="setActiveTab(1)"
+          class="nav-link cursor-pointer"
+          [ngClass]="getActiveTabCSSClass(1)"
+          role="tab"
+        >
+          Details
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          (click)="setActiveTab(2)"
+          class="nav-link cursor-pointer"
+          [ngClass]="getActiveTabCSSClass(2)"
+          role="tab"
+        >
+          Business
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          (click)="setActiveTab(3)"
+          class="nav-link cursor-pointer"
+          [ngClass]="getActiveTabCSSClass(3)"
+          role="tab"
+        >
+          Address
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          (click)="setActiveTab(4)"
+          class="nav-link cursor-pointer"
+          [ngClass]="getActiveTabCSSClass(4)"
+          role="tab"
+        >
+          Personal Data
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          (click)="setActiveTab(5)"
+          class="nav-link cursor-pointer"
+          [ngClass]="getActiveTabCSSClass(5)"
+          role="tab"
+        >
+          Media
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          (click)="setActiveTab(6)"
+          class="nav-link cursor-pointer"
+          [ngClass]="getActiveTabCSSClass(6)"
+          role="tab"
+        >
+          Notes
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          (click)="setActiveTab(7)"
+          class="nav-link cursor-pointer"
+          [ngClass]="getActiveTabCSSClass(7)"
+          role="tab"
+        >
+          Settings
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!--end::Header-->
+  <!--begin::Form-->
+  <form class="form px-10" [formGroup]="ContactForm">
+    <!--begin::Body-->
+    <div class="card-body">
+      <div class="tab-content pt-3">
+        <!-- begin::Details -->
+        <div class="tab-pane" [ngClass]="getActiveTabCSSClass(1)">
+          <!-- begin: row one -->
+          <div class="form-group row">
+            <div class="col-lg-2">
+              <label class="form-label form-control-sm form-control-solid"
+                >Avatar</label
+              >
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <img [src]="defaultPic" id="profilepic"  class="img-thumbnail"  alt=""/>
+                <div class="mt-2">
+                  <input
+                    type="file"
+                    class="form-control form-control-sm form-control-solid"
+                    placeholder="avatar"
+                    formControlName="profile_image"
+                    (change)="onFileChanged($event)"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2">
+              <label class="form-label form-control-sm form-control-solid"
+                >Status <span class="required_value">*</span></label
+              >
+            </div>
+            <div class="col-lg-4">
+              <ng-select2
+                [data]="contactStatus"
+                formControl="formControl"
+                formControlName="status"
+              ></ng-select2>
+              <span *ngIf="ContactForm.get('status').touched && ContactForm.get('status').hasError('required')" class="error-msgs">Select Status</span>
+            </div>
+          </div>
+          <!-- end: row one -->
+          <!-- begin: row two -->
+          <div class="form-group row">
+            <div class="col-lg-2">
+              <label class="form-label form-control-sm form-control-solid"
+                >First name <span class="required_value">*</span></label
+              >
+            </div>
+            <div class="col-lg-4">
+              <input
+                type="text"
+                class="form-control form-control-sm form-control-solid"
+                name="firstName"
+                placeholder="First Name"
+                formControlName="first_name"
+              />
+              <span *ngIf="ContactForm.get('first_name').touched && ContactForm.get('first_name').hasError('required')" class="error-msgs">Enter First Name</span>
+              <span *ngIf="ContactForm.get('first_name').touched && ContactForm.get('first_name').hasError('pattern')" class="error-msgs">Enter Text only</span>
+            </div>
+            <div class="col-lg-2">
+              <label
+                class="form-label form-control-sm form-control-solid"
+              >Public?</label>
+            </div>
+            <div class="col-lg-4">
+              <input
+                  type="checkbox"
+                  class="checkbox checkbox-single p-5" formControlName="is_public"
+                />
+            </div>
+          </div>
+          <!-- end: row two -->
+
+          <!-- begin: row three -->
+          <div class="form-group row">
+            <div class="col-lg-2">
+              <label class="form-label form-control-sm form-control-solid"
+                >Last name <span class="required_value">*</span></label
+              >
+            </div>
+            <div class="col-lg-4">
+              <input
+                type="text"
+                class="form-control form-control-sm form-control-solid"
+                name="lastName"
+                placeholder="Last Name"
+                formControlName="last_name"
+              />
+              <span *ngIf="ContactForm.get('last_name').touched && ContactForm.get('last_name').hasError('required')" class="error-msgs">Enter Last Name</span>
+              <span *ngIf="ContactForm.get('last_name').touched && ContactForm.get('last_name').hasError('pattern')" class="error-msgs">Enter Text only</span>
+            </div>
+            <div class="col-lg-2">
+              <label class="form-label form-control-sm form-control-solid"
+                >Type</label
+              >
+            </div>
+            <div class="col-lg-4">
+              <ng-select2 options="options" formControlName="type"></ng-select2>
+            </div>
+          </div>
+          <!-- end: row three -->
+
+          <!-- begin: row four -->
+          <div class="form-group row">
+            <div class="col-lg-2">
+              <label class="form-label form-control-sm form-control-solid"
+                >Nickname / Alias</label
+              >
+            </div>
+            <div class="col-lg-4">
+              <input
+                type="text"
+                class="form-control form-control-sm form-control-solid"
+                name="firstName"
+                placeholder="Nickname"
+                formControlName="nickname"
+              />
+            </div>
+            <div class="col-lg-2">
+              <label class="form-label form-control-sm form-control-solid"
+                >Group</label
+              >
+            </div>
+            <div class="col-lg-4">
+              <ng-select2
+                formControl="formControl"
+                options="options"
+                formControlName="group"
+              ></ng-select2>
+            </div>
+          </div>
+          <!-- end: row four -->
+          <!-- begin: row five -->
+          <div class="form-group row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-2">
+              <label class="form-label form-control-sm form-control-solid"
+                >Tag</label
+              >
+            </div>
+            <div class="col-lg-4">
+              <ng-select2
+                formControl="formControl"
+                options="options"
+                formControlName="tag"
+              ></ng-select2>
+            </div>
+          </div>
+          <!-- end: row five -->
+          <!-- begin: row six -->
+          <div class="form-group row">
+            <div class="col-lg-2">
+              <label class="form-label form-control-sm form-control-solid"
+                >Personal Phone</label
+              >
+            </div>
+            <div class="col-lg-4">
+              <input
+                type="text"
+                class="form-control form-control-sm form-control-solid"
+                name="firstName"
+                placeholder="Personal Phone"
+                formControlName="personal_phone"
+              />
+              <span *ngIf="ContactForm.get('personal_phone').touched && ContactForm.get('personal_phone').hasError('pattern')" class="error-msgs">Enter Valid Phone Number</span>
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4"></div>
+          </div>
+          <!-- end: row six -->
+          <!-- begin: row seven -->
+          <div class="form-group row">
+            <div class="col-lg-2">
+              <label class="form-label form-control-sm form-control-solid"
+                >Description</label
+              >
+            </div>
+            <div class="col-lg-4">
+              <textarea
+                cols="15"
+                rows="5"
+                formControlName="description"
+                class="form-control form-control-sm form-control-solid"
+              ></textarea>
+            </div>
+            <div class="col-lg-2">
+              <label class="form-label form-control-sm form-control-solid"
+                >Company</label
+              >
+            </div>
+            <div class="col-lg-4">
+              <ng-select2
+                formControl="formControl"
+                options="options"
+                formControlName="company"
+              ></ng-select2>
+            </div>
+          </div>
+          <!-- begin: row seven -->
+
+          <!-- begin: repeatble row code -->
+          <div formArrayName="email">
+            <div
+              class="card card-custom emailBox M"
+              *ngIf="ContactForm.get('email')?.controls == 0"
+            >
+              <button
+                mat-raised-button
+                color="accent"
+                [disabled]="ContactForm.controls.email.invalid"
+                (click)="addEmail()"
+                style="padding: 5px; width: 40%"
+              >
+                <i class="fa fa-plus"> Add Emails</i>
+              </button>
+            </div>
+            <div
+              *ngFor="
+                let row of ContactForm.get('email')?.controls;
+                let index = index;
+                let last = last;
+                let first = first;
+                let i = index
+              "
+              [formGroupName]="i"
+              class="card card-custom emailBox"
+            >
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-5">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label
+                          class="form-label form-control-sm form-control-solid"
+                          >Email <span class="required_value">*</span></label
+                        ><input
+                          type="text"
+                          class="
+                            form-control form-control-sm form-control-solid
+                          "
+                          name="email"
+                          placeholder="Email"
+                          formControlName="email"
+                        />
+                        <span *ngIf="ContactForm.get('email')?.controls[i].get('email').touched && ContactForm.get('email')?.controls[i].get('email').hasError('required')" class="error-msgs">Enter Email</span>
+                        <span *ngIf="ContactForm.get('email')?.controls[i].get('email').touched && ContactForm.get('email')?.controls[i].get('email').hasError('pattern')" class="error-msgs">Enter Valid Email</span>
+
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label
+                              class="
+                                form-label form-control-sm form-control-solid
+                              "
+                              ><input
+                                type="checkbox"
+                                class="checkbox checkbox-single p-5" formControlName="is_primary"
+                              />
+                              Primary
+                            </label>
+                          </div>
+                          <div class="col-md-6">
+                            <label
+                              class="
+                                form-label form-control-sm form-control-solid
+                              "
+                              ><input
+                                type="checkbox"
+                                class="checkbox checkbox-single p-5" formControlName="opted_out"
+                              />Opted out</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label
+                          class="form-label form-control-sm form-control-solid"
+                          >Email Type <span class="required_value">*</span>
+                        </label>
+                        <select
+                          class="form-control select2"
+                          formControlName="type"
+                        >
+                          <option value="1" selected>personal</option>
+                          <option value="2">business</option>
+                          <option value="3">private</option>
+                        </select>
+                        <span *ngIf="ContactForm.get('email')?.controls[i].get('type').touched && ContactForm.get('email')?.controls[i].get('type').hasError('required')" class="error-msgs">Select Email Type</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2 button-section">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button
+                          mat-raised-button
+                          color="warn"
+                          (click)="removeEmail(index)"
+                        >
+                          <i class="fa fa-minus" style="padding: 5px"></i>
+                        </button>
+                        <button
+                          mat-raised-button
+                          color="accent"
+                          *ngIf="last"
+                          [disabled]="ContactForm.controls.email.invalid"
+                          (click)="addEmail()"
+                          style="padding: 5px"
+                        >
+                          <i class="fa fa-plus"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end: repeatble row code -->
+          <!-- begin: row eight -->
+
+          <!-- begin: row eight -->
+        </div>
+        <!-- end::Details -->
+
+        <!-- begin::Business -->
+        <div
+          class="tab-pane"
+          [ngClass]="getActiveTabCSSClass(2)"
+          formGroupName="business"
+        >
+          <div class="card">
+            <!--begin::row one -->
+            <div class="form-group row">
+              <div class="col-lg-2">
+                <label class="form-label form-control-sm form-control-solid"
+                  >Website</label
+                >
+              </div>
+              <div class="col-lg-4">
+                <input
+                  type="text"
+                  class="form-control form-control-sm form-control-solid"
+                  name="website"
+                  placeholder="Website"
+                  formControlName="website"
+                />
+              </div>
+              <div class="col-lg-2"></div>
+              <div class="col-lg-4"></div>
+            </div>
+            <!--end:row one -->
+            <!--begin::row 2 -->
+            <div class="form-group row">
+              <div class="col-lg-2">
+                <label class="form-label form-control-sm form-control-solid"
+                  >Fiscal Code</label
+                >
+              </div>
+              <div class="col-lg-4">
+                <input
+                  type="text"
+                  class="form-control form-control-sm form-control-solid"
+                  name="fiscalCode"
+                  placeholder="Fiscal Code"
+                  formControlName="fiscal_code"
+                />
+              </div>
+              <div class="col-lg-2"></div>
+              <div class="col-lg-4"></div>
+            </div>
+            <!--end:row 2 -->
+            <!--begin::row 3 -->
+            <div class="form-group row">
+              <div class="col-lg-2">
+                <label class="form-label form-control-sm form-control-solid"
+                  >Vat Number</label
+                >
+              </div>
+              <div class="col-lg-4">
+                <input
+                  type="text"
+                  class="form-control form-control-sm form-control-solid"
+                  name="vatNumber"
+                  placeholder="Vat Number"
+                  formControlName="vat_number"
+                />
+              </div>
+              <div class="col-lg-2"></div>
+              <div class="col-lg-4"></div>
+            </div>
+            <!--end:row 3 -->
+            <!--begin::row 3 -->
+            <div class="form-group row">
+              <div class="col-lg-2">
+                <label class="form-label form-control-sm form-control-solid"
+                  >Business Registration</label
+                >
+              </div>
+              <div class="col-lg-4">
+                <input
+                  type="text"
+                  class="form-control form-control-sm form-control-solid"
+                  name="vatNumber"
+                  placeholder="Business Registration"
+                  formControlName="business_registration"
+                />
+              </div>
+              <div class="col-lg-2"></div>
+              <div class="col-lg-4"></div>
+            </div>
+            <!--end:row 3 -->
+            <!--begin::row 4 -->
+            <div class="form-group row">
+              <div class="col-lg-2">
+                <label class="form-label form-control-sm form-control-solid"
+                  >Business Phone</label
+                >
+              </div>
+              <div class="col-lg-4">
+                <input
+                  type="text"
+                  class="form-control form-control-sm form-control-solid"
+                  name="business_phone"
+                  placeholder="Business Phone"
+                  formControlName="business_phone"
+                />
+                <span *ngIf="ContactForm.get('business').get('business_phone').touched && ContactForm.get('business').get('business_phone').hasError('pattern')" class="error-msgs">Enter Valid Phone Number</span>
+              </div>
+              <div class="col-lg-2"></div>
+              <div class="col-lg-4"></div>
+            </div>
+            <!--end:row 4 -->
+            <!--begin::row 5 -->
+            <div class="form-group row">
+              <div class="col-lg-2">
+                <label class="form-label form-control-sm form-control-solid"
+                  >Business Fax</label
+                >
+              </div>
+              <div class="col-lg-4">
+                <input
+                  type="text"
+                  class="form-control form-control-sm form-control-solid"
+                  name="vatNumber"
+                  placeholder="Business Fax"
+                  formControlName="business_fax"
+                />
+              </div>
+              <div class="col-lg-2"></div>
+              <div class="col-lg-4"></div>
+            </div>
+          </div>
+          <!--end:row 5-->
+          <!--begin::row buttons-->
+          <!-- <div class="form-group row">
+            <div class="col-lg-2">
+              <button class="btn btn-info">Previous</button>
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4">
+              <button class="btn btn-info">Next</button>
+            </div>
+          </div> -->
+          <!--end: row buttons-->
+        </div>
+        <!-- end::Business -->
+
+        <!-- begin::Address -->
+        <div class="tab-pane" [ngClass]="getActiveTabCSSClass(3)">
+          <div formArrayName="address">
+            <div
+              class="card card-custom emailBox M"
+              *ngIf="ContactForm.get('address')?.controls == 0"
+            >
+              <button
+                mat-raised-button
+                color="accent"
+                [disabled]="ContactForm.controls.address.invalid"
+                (click)="addAddress()"
+                style="padding: 5px; width: 40%"
+              >
+                <i class="fa fa-plus"> Add Addresses</i>
+              </button>
+            </div>
+            <div
+              *ngFor="
+                let row of ContactForm.get('address')?.controls;
+                let index = index;
+                let last = last;
+                let first = first;
+                let i = index
+              "
+              [formGroupName]="i"
+              class="card card-custom emailBox"
+            >
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-10">
+                    <!--begin::row one -->
+                    <div class="form-group row">
+                      <div class="col-lg-2">
+                        <label
+                          class="form-label form-control-sm form-control-solid"
+                          >Address type
+                          <span class="required_value">*</span></label
+                        >
+                      </div>
+                      <div class="col-lg-4">
+                        <select
+                          class="form-control"
+                          required
+                          [formControl]="addressType"
+                          formControlName="type"
+                        >
+                          <option [ngValue]="null" disabled>
+                            Select Address Type
+                          </option>
+                          <option value="1">personal</option>
+                          <option value="2">office</option>
+                          <option value="3">private</option>
+                          <option value="4">vacation</option>
+                        </select>
+                        <span *ngIf="ContactForm.get('address')?.controls[i].get('type').touched && ContactForm.get('address')?.controls[i].get('type').hasError('required')">Select Address Type</span>
+                      </div>
+                      <div class="col-lg-2">
+                        <label
+                          class="form-label form-control-sm form-control-solid"
+                          >Street <span class="required_value">*</span>
+                        </label>
+                      </div>
+                      <div class="col-lg-4">
+                        <input
+                          type="text"
+                          class="
+                            form-control form-control-sm form-control-solid
+                          "
+                          name="street"
+                          placeholder="Street"
+                          formControlName="street"
+                        />
+                        <span *ngIf="ContactForm.get('address')?.controls[i].get('street').touched && ContactForm.get('street')?.controls[i].get('type').hasError('required')">Select Address Type</span>
+                      </div>
+                    </div>
+                    <!--end:row 2 -->
+                    <!--begin::row 3 -->
+                    <div class="form-group row">
+                      <div class="col-lg-2">
+                        <label
+                          class="form-label form-control-sm form-control-solid"
+                          >City</label
+                        >
+                      </div>
+                      <div class="col-lg-4">
+                        <input
+                          type="text"
+                          class="
+                            form-control form-control-sm form-control-solid
+                          "
+                          name="city"
+                          placeholder="City"
+                          formControlName="city"
+                        />
+                      </div>
+                      <div class="col-lg-2">
+                        <label
+                          class="form-label form-control-sm form-control-solid"
+                          >Postal code</label
+                        >
+                      </div>
+                      <div class="col-lg-4">
+                        <input
+                          type="text"
+                          class="
+                            form-control form-control-sm form-control-solid
+                          "
+                          name="postalCode"
+                          placeholder="Postal code"
+                          formControlName="postal_code"
+                        />
+                      </div>
+                    </div>
+                    <!--end:row 4 -->
+                    <!--begin::row 5 -->
+                    <div class="form-group row">
+                      <div class="col-lg-2">
+                        <label
+                          class="form-label form-control-sm form-control-solid"
+                          >State</label
+                        >
+                      </div>
+                      <div class="col-lg-4">
+                        <select class="form-control" formControlName="state">
+                          <option [ngValue]="null" disabled>
+                            Select State
+                          </option>
+                          <option value="1">State1</option>
+                          <option value="2">State1</option>
+                          <option value="3">State1</option>
+                          <option value="4">State1</option>
+                        </select>
+                      </div>
+                      <div class="col-lg-2">
+                        <label
+                          class="form-label form-control-sm form-control-solid"
+                          >Country</label
+                        >
+                      </div>
+                      <div class="col-lg-4">
+                        <input
+                          type="text"
+                          class="
+                            form-control form-control-sm form-control-solid
+                          "
+                          name="vatNumber"
+                          placeholder="Business Fax"
+                          formControlName="country"
+                        />
+                      </div>
+                    </div>
+                    <!--end:row 6 -->
+                    <!--begin::row 6 -->
+                    <div class="form-group row">
+                      <div class="col-lg-2">
+                        <label
+                          class="form-label form-control-sm form-control-solid"
+                          >Description</label
+                        >
+                      </div>
+                      <div class="col-lg-10">
+                        <textarea
+                          type="text"
+                          class="
+                            form-control form-control-sm form-control-solid
+                          "
+                          name="description"
+                          placeholder="description"
+                          formControlName="description"
+                        ></textarea>
+                      </div>
+                    </div>
+                    <!--end:row 6 -->
+                  </div>
+                  <div class="col-md-2 button-section">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button
+                          mat-raised-button
+                          color="warn"
+                          (click)="removeAddress(index)"
+                        >
+                          <i class="fa fa-minus" style="padding: 5px"></i>
+                        </button>
+                        <button
+                          mat-raised-button
+                          color="accent"
+                          *ngIf="last"
+                          [disabled]="ContactForm.controls.address.invalid"
+                          (click)="addAddress()"
+                          style="padding: 5px"
+                        >
+                          <i class="fa fa-plus"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--begin::row buttons-->
+          <!-- <div class="form-group row">
+            <div class="col-lg-2">
+              <button class="btn btn-info">Previous</button>
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4">
+              <button class="btn btn-info">Next</button>
+            </div>
+          </div> -->
+          <!--end: row buttons-->
+        </div>
+        <!-- end::Address -->
+
+        <!-- begin::Personal Data -->
+        <div
+          class="tab-pane personalDataTab"
+          [ngClass]="getActiveTabCSSClass(4)"
+          formGroupName="personal_data"
+        >
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="card">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label"
+                      >Place of Birth</label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        type="text"
+                        formControlName="place_of_birth"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="Place of Birth"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Birthday</label>
+                    <div class="col-sm-9">
+                      <input
+                        type="date"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="Birthday"
+                        formControlName="birthday"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label"
+                      >Driver License</label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        type="text"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="Driver License"
+                        formControlName="driver_license"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Height</label>
+                    <div class="col-sm-9">
+                      <input
+                        type="text"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="Height"
+                        formControlName="height"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Weight</label>
+                    <div class="col-sm-9">
+                      <input
+                        type="text"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="Weight"
+                        formControlName="weight"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Bust size</label>
+                    <div class="col-sm-9">
+                      <input
+                        type="text"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="Bust size"
+                        formControlName="bust_size"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Waist Size</label>
+                    <div class="col-sm-9">
+                      <input
+                        type="text"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="Waist Size"
+                        formControlName="waist_size"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Shoes Size</label>
+                    <div class="col-sm-9">
+                      <input
+                        type="text"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="Shoes Size"
+                        formControlName="shoes_size"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="card">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Facebook Page</label>
+                    <div class="col-sm-9">
+                      <input
+                        type="url"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="Facebook Page"
+                        formControlName="facebook_profile"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label"
+                      >Instagram Profile</label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        type="url"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="Instagram Profile"
+                        formControlName="instagram_profile"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label"
+                      >Linkedin Profile</label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        type="url"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="Linkedin Profile"
+                        formControlName="linkedin_profile"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">TikTok </label>
+                    <div class="col-sm-9">
+                      <input
+                        type="url"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="TikTok "
+                        formControlName="tiktok_profile"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Twitter</label>
+                    <div class="col-sm-9">
+                      <input
+                        type="url"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="Twitter"
+                        formControlName="twitter_profile"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card id_card">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">ID Card Type</label>
+                    <div class="col-sm-9">
+                      <input
+                        type="text"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="ID Card Type"
+                        formControlName="id_card_type"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label"
+                      >ID Card Number</label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        type="text"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="ID Card Number"
+                        formControlName="id_card_number"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label"
+                      >ID Card Released by</label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        type="text"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="ID Card Released by"
+                        formControlName="id_card_released_by"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label"
+                      >ID Card Released on</label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        type="text"
+                        class="form-control form-control-sm form-control-solid"
+                        placeholder="ID Card Released on"
+                        formControlName="id_card_released_on"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- end::Personal Data -->
+
+        <!-- begin::Media -->
+        <div class="tab-pane" [ngClass]="getActiveTabCSSClass(5)">5</div>
+        <!-- end::Media -->
+
+        <!-- begin::Media -->
+        <div class="tab-pane" [ngClass]="getActiveTabCSSClass(6)">6</div>
+        <!-- end::Media -->
+
+        <!-- begin::Media -->
+        <div class="tab-pane" [ngClass]="getActiveTabCSSClass(7)">7</div>
+        <!-- end::Media -->
+      </div>
+      <div class="form-group row">
+        <div class="col-lg-2">
+          <button class="btn btn-info">Cancel</button>
+        </div>
+        <div class="col-lg-4"></div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-4">
+          <button
+            class="btn btn-info"
+            (click)="submitForm()"
+            [disabled]="ContactForm.invalid"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--end::Body-->
+  </form>
+  <!--end:Form-->
+</div>
+<!--end:card-->

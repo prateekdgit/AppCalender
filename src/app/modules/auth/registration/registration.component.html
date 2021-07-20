@@ -1,0 +1,300 @@
+<!--begin::Signup-->
+<div class="login-form login-signup">
+    <!--begin::Form-->
+    <form class="form px-10" novalidate="novalidate" id="kt_login_signup_form" [formGroup]="registrationForm">
+      <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
+        <ng-wizard-step >
+          <!--begin: Wizard Step 1-->
+          <div class="" data-wizard-type="step-content" data-wizard-state="current">
+            <!--begin::Title-->
+            <div class="pb-10 pb-lg-12">
+              <h3 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">Welcome to ArtCalender</h3>
+            </div>
+            <!--begin::Title-->
+            <!--begin::Form Group-->
+            <div class="form-group">
+              <input type="text" formControlName="email"
+                class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
+                placeholder="Email" />
+            </div>
+            <!--end::Form Group-->
+            <div class="form-group text-muted font-weight-bold font-size-h4">use your working email for better experience
+              <!-- <a href="/register" class="text-primary font-weight-bolder">Sign In</a> -->
+            </div>
+            <div class="form-group">
+              <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-4 pr-4"
+                data-wizard-type="action-next" (click)="gonext('step1')"
+                [disabled]='registrationForm.controls.email.invalid'>Proceed</button>
+            </div>
+          </div>
+          <!--end: Wizard Step 1-->
+        </ng-wizard-step>
+    
+        <ng-wizard-step >
+          <!--begin: Wizard Step 2-->
+          <div class="pb-5">
+            <!--begin::Title-->
+            <div class="pt-lg-0 pt-5 pb-15">
+              <h3 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">How would you like to be called?</h3>
+    
+            </div>
+            <!--begin::Title-->
+            <!--begin::Row-->
+            <div class="row" formGroupName="userdata">
+              <div class="col-xl-6">
+                <!--begin::Input-->
+                <div class="form-group">
+                  <!-- <label class="font-size-h6 font-weight-bolder text-dark">Address Line 1</label> -->
+                  <input type="text"
+                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
+                    formControlName="first_name" placeholder="First name" />
+                  <!-- <span class="form-text text-muted">Please enter your Address.</span> -->
+                </div>
+                <!--end::Input-->
+              </div>
+              <div class="col-xl-6">
+                <!--begin::Input-->
+                <div class="form-group">
+                  <!-- <label class="font-size-h6 font-weight-bolder text-dark">Address Line 1</label> -->
+                  <input type="text"
+                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
+                    formControlName="last_name" placeholder="Last name" />
+                  <!-- <span class="form-text text-muted">Please enter your Address.</span> -->
+                </div>
+                <!--end::Input-->
+              </div>
+              <div class="col-xl-6">
+                <!--begin::Input-->
+                <div class="form-group">
+                  <!-- <label class="font-size-h6 font-weight-bolder text-dark">Address Line 1</label> -->
+                  <input type="text"
+                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
+                    formControlName="nickname" placeholder="Nick name" />
+                  <!-- <span class="form-text text-muted">Please enter your Address.</span> -->
+                </div>
+                <!--end::Input-->
+              </div>
+              <div class="row col-md-12 d-flex justify-content-center align-items-center p-0">
+                <div class="col-md-6">
+                  <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-4 pr-4"
+                    data-wizard-type="action-next" (click)="gonext('step3')"
+                    [disabled]='registrationForm.controls.userdata.invalid'>Proceed</button>
+                </div>
+                <div class="col-md-6">
+                  <span class="form-text text-muted" (click)='showPreviousStep()'>Go Back</span>
+                </div>
+              </div>
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end: Wizard Step 2-->
+        </ng-wizard-step>
+    
+        <!--<ng-wizard-step >
+          <!--begin: Wizard Step 2-
+          <div class="pb-5">
+            <!--begin::Title-
+            <div class="pt-lg-0 pt-5 pb-15">
+              <h3 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">How would you like to be called?</h3>
+    
+            </div>
+            <!--begin::Title-->
+            <!--begin::Row-->
+            <!-- <div class="row" formGroupName="password">
+              <div class="col-xl-6">
+                <div class="form-group">
+                  <input type="password"
+                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
+                    formControlName="password" placeholder="password"
+                    (keyup)="authService.passwordMsg(registrationForm.value.password.password)" />
+                  <small>{{authService.passmsg}}</small>
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <div class="form-group">
+                  <input type="password"
+                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
+                    formControlName="cpassword" placeholder="confirm password"
+                    (keyup)="authService.passwordMsg(registrationForm.value.password.cpassword)" />
+                  <small>{{authService.passmsg}}</small>
+                </div>
+              </div>
+              <div class="row col-md-12 d-flex justify-content-center align-items-center p-0">
+                <div class="col-md-6">
+                  <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-4 pr-4"
+                    data-wizard-type="action-next" (click)="gonext('step3')"
+                    [disabled]='registrationForm.controls.password.invalid'>Proceed</button>
+                </div>
+                <div class="col-md-6">
+                  <span class="form-text text-muted" (click)='showPreviousStep()'>Go Back</span>
+                </div>
+              </div>
+            </div> -->
+            <!--end::Row--
+          </div>
+          <!--end: Wizard Step 2--
+        </ng-wizard-step> -->
+        <ng-wizard-step >
+          <div class="pb-5">
+            <div class="pt-lg-0 pt-5 pb-15">
+              <h3 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">My Workspace Name</h3>
+    
+            </div>
+            <div class="row" formGroupName="workspace">
+              <div class="col-xl-12">
+                <div class="form-group">
+                  <input type="text"
+                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
+                    formControlName="name" placeholder="workspace" />
+                  <small>Name the workspace as your agency, band or artist nickname. You can rename it later</small>
+                </div>
+              </div>
+            </div>
+            <!--end::Row-->
+            <div class="row col-md-12 d-flex justify-content-center align-items-center p-0">
+              <div class="col-md-6">
+                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-4 pr-4"
+                  data-wizard-type="action-next" (click)="gonext('step4')"
+                  [disabled]='registrationForm.controls.workspace.invalid'>Proceed</button>
+              </div>
+              <div class="col-md-6">
+                <span class="form-text text-muted" (click)='redirecttodash()'>Skip This</span>
+              </div>
+            </div>
+          </div>
+          <!--end: Wizard Step 2-->
+        </ng-wizard-step>
+        <ng-wizard-step >
+          <div class="pb-5">
+            <div class="pt-lg-0 pt-5 pb-15">
+              <h3 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">Invite your Working Team to Join You</h3>
+        
+            </div>
+            <button mat-raised-button color="accent" [disabled]="registrationForm.controls.invite.invalid" (click)="addInvite()"
+              style="padding: 5px; width: 40%" class="btn btn-info">
+              <i class="fa fa-plus"> Add Emails</i>
+            </button>
+            <div formArrayName="invite" class="workspace_invite">
+
+
+              <div class="form-group">
+                <div class="inviteTeam" *ngFor="
+                let row of registrationForm.get('invite')?.controls;
+                let index = index;
+                let last = last;
+                let first = first;
+                let i = index
+              "
+              [formGroupName]="i">
+              <div class="row custom-card">
+                  <div>
+                    <input class="form-control" required placeholder="Email" formControlName="email" />
+                  </div>
+                  <div>
+                    <select class="form-control" required formControlName="role">
+                      <option [ngValue]="null" disabled>Select Role</option>
+                      <option *ngFor="let role of userRoles" [ngValue]="role.id">
+                        {{ role.name }}
+                      </option>
+                    </select>
+                  </div>
+                  <div style="padding:0 10px;">
+                    <div class="btn_block">
+                      <span class="btn btn-info remove" *ngIf="!first" (click)="removeInvite(index)">
+                        -
+                      </span>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <!--end::Row-->
+            
+            <div class="row col-md-12 d-flex justify-content-center align-items-center p-0">
+              <div class="col-md-6">
+                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-4 pr-4"
+                  data-wizard-type="action-next" (click)="gonext('step5')"
+                  [disabled]='registrationForm.controls.invite.invalid'>Proceed</button>
+              </div>
+              <div class="col-md-6">
+                <span class="form-text text-muted" (click)='redirecttodash()'>Skip This</span>
+              </div>
+            </div>
+          </div>
+          <!--end: Wizard Step 2-->
+        </ng-wizard-step>
+        <ng-wizard-step >
+          <div class="pb-5">
+            <div class="pt-lg-0 pt-5 pb-10">
+              <h3 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">Customize Your Working Space</h3>
+              <small>Your have almost done, let's fit your space for your need.</small>
+            </div>
+            <div class="row" formGroupName="talent">
+              <div class="col-xl-12">
+                <div class="form-group">                  
+                    <mat-form-field>
+                      <mat-select placeholder="Your Talent" formControlName="talent">
+                        <mat-option *ngFor="let talent of talents" [value]="talent.value">
+                          {{ talent.viewValue }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  <!-- <small>Add your team email, one email per line</small> -->
+                </div>
+              </div>
+            </div>
+            <!--end::Row-->
+            <div class="row col-md-12 d-flex justify-content-center align-items-center p-0">
+              <div class="col-md-6">
+                <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-4 pr-4"
+                  data-wizard-type="action-next" (click)="gonext('step6')"
+                  [disabled]='registrationForm.controls.talent.invalid'>Proceed</button>
+              </div>
+              <div class="col-md-6">
+                <span class="form-text text-muted" (click)='redirecttodash()'>Skip This</span>
+              </div>
+            </div>
+          </div>
+          <!--end: Wizard Step 2-->
+        </ng-wizard-step>
+        <ng-wizard-step >
+          <div class="pb-5">
+            <div class="pt-lg-0 pt-5 pb-10">
+              <h3 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">That's all Folks!</h3>
+              <small>Your are set. Let's start to build some amazing event!</small>
+            </div>
+            <!--end::Row-->
+            <div class="row col-md-12 d-flex justify-content-center align-items-center p-0">
+              <div class="col-md-6">
+                <a href="/dashboard" type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-4 pr-4"                  
+                >Proceed</a>
+              </div>
+            </div>
+          </div>
+          <!--end: Wizard Step 2-->
+        </ng-wizard-step>
+      </ng-wizard>
+    </form>
+    <!--end::Form-->
+</div>
+<!--end::Signup-->
+
+<!-- <ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+  <ng-container
+    *ngIf="control.hasError(validation) && (control.dirty || control.touched)"
+  >
+    <div class="fv-plugins-message-container">
+      <div class="fv-help-block">
+        {{ message }}
+      </div>
+    </div>
+  </ng-container>
+</ng-template> -->
