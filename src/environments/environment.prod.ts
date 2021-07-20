@@ -4,6 +4,7 @@ export const environment = {
   USERDATA_KEY: 'authf649fc9a5f55',
   isMockEnabled: true,
   apiUrl: 'https://artcalendar.sixwebsoft.com/web',
-  baseUrl:'https://artcalendar.sixwebsoft.com'
+  baseUrl: 'https://artcalendar.sixwebsoft.com',
+  assetUrl: 'https://artcalendar.sixwebsoft.com/web',
   // apiUrl: 'mysite.com/api'
 };
